@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# Users Controller
 class UsersController < ProtectedController
   skip_before_action :authenticate, only: [:signup, :signin]
 
@@ -44,6 +45,10 @@ class UsersController < ProtectedController
     end
   end
 
+  def get_User_Name
+    user = User.find(item[:id])
+  end
+
   def index
     render json: User.all
   end
@@ -61,7 +66,7 @@ class UsersController < ProtectedController
 
   def user_creds
     params.require(:credentials)
-          .permit(:email, :password, :password_confirmation)
+          .permit(:name, :email, :password, :password_confirmation)
   end
 
   def pw_creds
