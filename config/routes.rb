@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post '/add-user-item' => 'user_items#add_user_item'
   delete '/delete-user-item/:id' => 'user_items#delete_user_items'
   get '/search-items' => 'user_items#search_user_items'
+  patch '/edit-user-item/:id' => 'user_items#update_user_items'
 
   post '/request-item' => 'requests#request_user_item'
 end

@@ -16,7 +16,7 @@ class UserItemsController < ApplicationController
   # POST '/create-user-item'
   def add_user_item
     user_item = UserItem.create(item_data)
-    if user_item.valid?
+    if user_item.save?
       render json: user_item, status: :created
     else
       head :bad_request
@@ -34,6 +34,9 @@ class UserItemsController < ApplicationController
     # user_items = UserItem.joins('INNER JOIN users ON users.id= user_items.user_id').where('user_items.name like ? and user_items.user_id!=?', "%#{item[:name]}%", item[:user_id])
     user_items = UserItem.select('user_items.name, user_items.description, user_items.id, user_items.user_id, user_items.status, users.name as user_name').joins(:user).where('user_items.name like ? and user_items.user_id!=?', "%#{item[:name]}%", item[:user_id])
     render json: user_items, each_serializer: UserItem::SearchItemSerializer
+  end
+
+  def update_user_items
   end
 
   # def request_user_item
@@ -59,5 +62,10 @@ class UserItemsController < ApplicationController
   def item
     params.require(:item)
           .permit(:name, :user_id)
+  end
+
+  def update_items
+    params.require(:edit)
+          .permit(:name, :description, :id)
   end
 end
