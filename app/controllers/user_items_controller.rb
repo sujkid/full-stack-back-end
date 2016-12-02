@@ -16,7 +16,7 @@ class UserItemsController < ApplicationController
   # POST '/create-user-item'
   def add_user_item
     user_item = UserItem.create(item_data)
-    if user_item.save?
+    if user_item.valid?
       render json: user_item, status: :created
     else
       head :bad_request
