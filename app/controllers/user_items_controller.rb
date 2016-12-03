@@ -37,10 +37,9 @@ class UserItemsController < ApplicationController
   end
 
   def update_user_items
+    update_user_item = UserItem.find(params[:id]).update(user_item_update)
+    render json: update_user_item
   end
-
-  # def request_user_item
-  # end
 
   private
 
@@ -64,7 +63,7 @@ class UserItemsController < ApplicationController
           .permit(:name, :user_id)
   end
 
-  def update_items
+  def user_item_update
     params.require(:edit)
           .permit(:name, :description, :id)
   end
