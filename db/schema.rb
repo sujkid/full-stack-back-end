@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161202142353) do
+ActiveRecord::Schema.define(version: 20161204195030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,13 +26,16 @@ ActiveRecord::Schema.define(version: 20161202142353) do
   add_index "examples", ["user_id"], name: "index_examples_on_user_id", using: :btree
 
   create_table "requests", force: :cascade do |t|
-    t.string   "location"
-    t.integer  "duration"
-    t.integer  "borrowed_user_item_id"
-    t.integer  "lent_user_item_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.string   "mailing_address"
+    t.date     "return_date"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "user_item_id"
+    t.integer  "user_id"
   end
+
+  add_index "requests", ["user_id"], name: "index_requests_on_user_id", using: :btree
+  add_index "requests", ["user_item_id"], name: "index_requests_on_user_item_id", using: :btree
 
   create_table "user_items", force: :cascade do |t|
     t.string   "name"
@@ -58,5 +61,7 @@ ActiveRecord::Schema.define(version: 20161202142353) do
   add_index "users", ["token"], name: "index_users_on_token", unique: true, using: :btree
 
   add_foreign_key "examples", "users"
+  add_foreign_key "requests", "user_items"
+  add_foreign_key "requests", "users"
   add_foreign_key "user_items", "users"
 end

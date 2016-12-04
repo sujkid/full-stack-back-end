@@ -33,7 +33,7 @@ class UserItemsController < ApplicationController
   # GET '/search-user-item'
   def search_user_items
     # user_items = UserItem.joins('INNER JOIN users ON users.id= user_items.user_id').where('user_items.name like ? and user_items.user_id!=?', "%#{item[:name]}%", item[:user_id])
-    user_items = UserItem.select('user_items.name, user_items.description, user_items.id, user_items.user_id, user_items.status, users.name as user_name').joins(:user).where('user_items.name like ? and user_items.user_id!=?', "%#{item[:name]}%", item[:user_id])
+    user_items = UserItem.select('user_items.name, user_items.description, user_items.id, user_items.user_id, user_items.status, users.name as user_name').joins(:user).where('user_items.name like ? and user_items.user_id!=?', "%#{item[:name]}%", current_user.id)
     render json: user_items, each_serializer: UserItem::SearchItemSerializer
   end
 
