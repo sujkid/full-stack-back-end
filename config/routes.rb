@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # get '/get-user-name' => 'users#get_User_Name'
   resources :users, only: [:index, :show]
 
+  resources :user_items
   get '/user_items', to: 'user_items#index'
   get '/retrieve_user_items/:user_id', to: 'user_items#retrieve_user_items'
   post '/add-user-item' => 'user_items#add_user_item'

@@ -1,6 +1,6 @@
 # User Items Controller
 class UserItemsController < ApplicationController
-  # before_action :authenticate
+  before_action :authenticate
 
   def index
     @user_items = UserItem.all
@@ -9,15 +9,16 @@ class UserItemsController < ApplicationController
 
   # GET '/retrieve_user_items'
   def retrieve_user_items
-    user_item = UserItem.where('user_id=?', params[:user_id])
-    render json: user_item
+    # user_item = UserItem.where('user_id=?', params[:user_id])
+    @user_item = UserItem.where('user_id=?', current_user.id)
+    render json: @user_item
   end
 
   # POST '/create-user-item'
   def add_user_item
-    user_item = UserItem.create(item_data)
-    if user_item.valid?
-      render json: user_item, status: :created
+    @user_item = current_user.user_items.build(item_data)
+    if @user_item.save
+      render json: @user_item, status: :created
     else
       head :bad_request
     end
@@ -25,8 +26,8 @@ class UserItemsController < ApplicationController
 
   # DELETE '/delete-user-item'
   def delete_user_items
-    user_item = UserItem.find(params[:id])
-    user_item.destroy
+    @user_item = current_user.user_items.find(params[:id])
+    @user_item.destroy
   end
 
   # GET '/search-user-item'
@@ -37,8 +38,8 @@ class UserItemsController < ApplicationController
   end
 
   def update_user_items
-    update_user_item = UserItem.find(params[:id]).update(user_item_update)
-    render json: update_user_item
+    @update_user_item = current_user.user_items.find(params[:id]).update(user_item_update)
+    render json: @update_user_item
   end
 
   private
