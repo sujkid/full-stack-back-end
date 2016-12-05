@@ -38,7 +38,8 @@ class UserItemsController < ApplicationController
   end
 
   def update_user_items
-    @update_user_item = current_user.user_items.find(params[:id]).update(user_item_update)
+    @update_user_item =
+      current_user.user_items.find(params[:id]).update(user_item_update)
     render json: @update_user_item
   end
 

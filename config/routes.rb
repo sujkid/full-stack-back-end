@@ -16,5 +16,9 @@ Rails.application.routes.draw do
   get '/search-items' => 'user_items#search_user_items'
   patch '/edit-user-item/:id' => 'user_items#update_user_items'
 
+  resources :requests
   post '/request-item' => 'requests#request_user_item'
+  get '/inbox_items/:user_id', to: 'requests#inbox_user_item'
+  patch '/accept-request/:id', to: 'requests#accept_request'
+  delete '/reject-request/:id', to: 'requests#reject_request'
 end

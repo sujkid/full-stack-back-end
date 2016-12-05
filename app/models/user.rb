@@ -4,4 +4,5 @@ class User < ActiveRecord::Base
   include Authentication
   has_many :examples
   has_many :user_items
+  has_many :requests
 end
