@@ -6,6 +6,8 @@ Find the app <a href="https://sujkid.github.io/full-stack-front-end/">here</a>
 
 <a href="https://github.com/sujkid/full-stack-front-end">The front-end repository</a>
 
+heroku url: https://blooming-inlet-95288.herokuapp.com
+
 ## Technologies Used
 
 -   [`rails`](https://github.com/rails/rails)
