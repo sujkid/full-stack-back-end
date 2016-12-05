@@ -4,6 +4,8 @@
 The back end for my Swap Jungle app.
 Find the app <a href="https://sujkid.github.io/full-stack-front-end/">here</a>
 
+<a href="https://github.com/sujkid/full-stack-front-end">The front-end repository</a>
+
 ## Technologies Used
 
 -   [`rails`](https://github.com/rails/rails)
@@ -54,5 +56,5 @@ As a user, I can
 
 ## Wireframes and ERDs
 
-1.  <a href="./ERD/swap jungle erd: Lucidchart.pdf">ERD</a>
+1.  <a href="./ERD/Swap-Jungle-ERD.png">ERD</a>
 1.  <a href="./Wireframes/IMG_7360.JPG">Search page wireframe</a>
