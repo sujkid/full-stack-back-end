@@ -2,7 +2,7 @@ class RequestsController < ProtectedController
   # POST
   # requesting a user_item
   def request_user_item
-    @request_user_item = Request.create(request_user_item_param)
+    @request_user_item = current_user.requests.build(request_user_item_param)
     if @request_user_item.save
       @user_item = UserItem.find(item[:user_item_id])
       @user_item.status = 'Pending'
