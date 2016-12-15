@@ -36,6 +36,7 @@ class RequestsController < ProtectedController
     @reject_req.destroy
     @user_item = current_user.user_items.find(params[:id])
     @user_item.status = 'Available'
+    @user_item.save
   end
 
   private
